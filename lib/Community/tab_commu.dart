@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mappage/Community/sub/Community3.dart';
 
 class Tabcommu extends StatelessWidget{
 
@@ -9,7 +10,12 @@ class Tabcommu extends StatelessWidget{
       child : Padding(
       padding: EdgeInsets.all(8.0),
       child: Column(
-        children: [post()],
+
+        children: [
+          makeButton(),
+          post(),
+          post(),
+          post()],
       ),
     ),
     );
@@ -21,8 +27,12 @@ class post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return InkWell(
+        child:Column(
       children: [
+        SizedBox(
+          height: 10,
+        ),
         tag(),
         SizedBox(
           height: 10,
@@ -32,8 +42,16 @@ class post extends StatelessWidget {
           height: 15,
         ),
         information(),
-        makeButton(),
+        Divider(
+          thickness: 1,
+          height: 1,
+          color: Colors.grey,
+        )
       ],
+    ),
+    onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Community3()));
+    },
     );
   }
 }
@@ -96,18 +114,40 @@ class makeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ElevatedButton.icon(
-          icon: const Icon(Icons.add_task),
-          label: const Text("궁금해요"),
+        ElevatedButton(
+          child:  Text("전체"),
           onPressed: () {},
         ),
         const SizedBox(
           width: 10,
         ),
-        ElevatedButton.icon(
-          icon: const Icon(Icons.message),
-          label: const Text("답변하기"),
+        ElevatedButton(
+
+          child: Text("아이"),
           onPressed: () {},
+        ),const SizedBox(
+          width: 10,
+        ),
+        ElevatedButton(
+
+          child: const Text("노인"),
+          onPressed: () {},
+        ),const SizedBox(
+          width: 10,
+        ),
+        ElevatedButton(
+
+          child: const Text("장애"),
+          onPressed: () {},
+        ),const SizedBox(
+          width: 10,
+        ),
+        ElevatedButton(
+
+          child: const Text("보호자"),
+          onPressed: () {},
+        ),const SizedBox(
+          width: 10,
         ),
       ],
     );
