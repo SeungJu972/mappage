@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mappage/Community/tab_commu.dart';
 import 'sub/firstPage.dart';
 import 'sub/secondPage.dart';
 import 'sub/threePage.dart';
@@ -48,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage>
           title: Text('TabBar Example'),
         ),
         body: TabBarView(
-          children: <Widget>[FirstApp(), SecondApp(), ThreeApp()],
+          children: <Widget>[FirstApp(), Tabcommu(), ThreeApp()],
           controller: controller,
         ),
         bottomNavigationBar: TabBar(tabs: <Tab>[
