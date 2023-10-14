@@ -6,85 +6,144 @@ import 'package:mappage/Community/sub/Community3.dart';
 import 'package:flutter/material.dart';
 import 'package:mappage/Community/sub/Community4.dart';
 
+class Tabcommu extends StatefulWidget {
+  @override
+  _TabCommu createState() => _TabCommu();
+}
 
-class Tabcommu extends StatelessWidget{
+class _TabCommu extends State<Tabcommu> {
+  int buttonNum = 0;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child : Padding(
-      padding: EdgeInsets.all(8.0),
-      child: ListView(
-        children: [
-          Row(
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Community4()));
-                }, icon:  Image.asset(
-              "repo/images/search.png",
-              width: 20,
-              height: 20,
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Community4()));
+                  },
+                  icon: Image.asset(
+                    "repo/images/search.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Community()));
+                  },
+                  icon: Image.asset(
+                    "repo/images/newspaper.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Community2()));
+                  },
+                  icon: Image.asset(
+                    "repo/images/alaram.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+              ],
             ),
-                ),
-                IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Community()));
-                }, icon:  Image.asset(
-                  "repo/images/newspaper.png",
-                  width: 20,
-                  height: 20,
-                ),
-                ),
-                IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Community2()));
-                }, icon:  Image.asset(
-                  "repo/images/alaram.png",
-                  width: 20,
-                  height: 20,
-                ),
-                ),
+            makeButton(),
+            post(
+              context: "내용",
+              name: "이름",
+              info: "정보",
+            ),
+            post(
+              context: "내용1",
+              name: "이름1",
+              info: "정보1",
+            ),
+            post(
+              context: "내용2",
+              name: "이름2",
+              info: "정보2",
+            )
           ],
-          ),
-          makeButton(),
-          post(),
-          post(),
-          post()],
+        ),
       ),
-    ),
     );
   }
+
+  @override
+  State<StatefulWidget> createState() => SearchPageState();
 }
 
-class post extends StatelessWidget {
-  const post({super.key});
+class SearchPageState extends State<Tabcommu> {
+  int test = 0;
+
+  void UpdateState(int id) {
+    setState(() {
+      test = id;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+
+class post extends StatefulWidget {
+  const post(
+      {super.key,
+      required String this.context,
+      required String this.name,
+      required String this.info});
+
+  final String context;
+  final String name;
+  final String info;
+
+  @override
+  State<StatefulWidget> createState() => _post();
+}
+
+class _post extends State<post> {
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
-        child:Column(
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        tag(),
-        SizedBox(
-          height: 10,
-        ),
-        contents(),
-        SizedBox(
-          height: 15,
-        ),
-        information(),
-        Divider(
-          thickness: 1,
-          height: 1,
-          color: Colors.grey,
-        )
-      ],
-    ),
-    onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Community3()));
-    },
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          tag(),
+          SizedBox(
+            height: 10,
+          ),
+          contents(content: widget.context),
+          SizedBox(
+            height: 15,
+          ),
+          information(name: widget.name, info: widget.info),
+          Divider(
+            thickness: 1,
+            height: 1,
+            color: Colors.grey,
+          )
+        ],
+      ),
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Community3()));
+      },
     );
   }
 }
@@ -110,29 +169,45 @@ class tag extends StatelessWidget {
   }
 }
 
-class contents extends StatelessWidget {
-  const contents({super.key});
+class contents extends StatefulWidget {
+  const contents({super.key, required String this.content});
+
+  final String content;
 
   @override
+  State<StatefulWidget> createState() => _contents();
+}
+
+class _contents extends State<contents> {
+  @override
   Widget build(BuildContext context) {
-    return const Text("내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용");
+    return Text(widget.content);
   }
 }
 
-class information extends StatelessWidget {
-  const information({super.key});
+class information extends StatefulWidget {
+  const information(
+      {super.key, required String this.name, required String this.info});
+
+  final String name;
+  final String info;
 
   @override
+  State<StatefulWidget> createState() => _information();
+}
+
+class _information extends State<information> {
+  @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "0price, 남가좌동",
+          widget.name,
           style: TextStyle(color: Colors.black54),
         ),
         Text(
-          "22분 전",
+          widget.info,
           style: TextStyle(color: Colors.black54),
         ),
       ],
@@ -141,48 +216,61 @@ class information extends StatelessWidget {
 }
 
 class makeButton extends StatelessWidget {
-  const makeButton({super.key});
+  MaterialStatesController AllBtn = MaterialStatesController();
+  MaterialStatesController ChildBtn = MaterialStatesController();
+  MaterialStatesController OldBtn = MaterialStatesController();
+  MaterialStatesController CapBtn = MaterialStatesController();
+  MaterialStatesController SafBtn = MaterialStatesController();
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         ElevatedButton(
-          child:  Text("전체"),
+          statesController: AllBtn,
+          child: Text("전체"),
           onPressed: () {},
         ),
         const SizedBox(
           width: 10,
         ),
         ElevatedButton(
-
           child: Text("아이"),
           onPressed: () {},
-        ),const SizedBox(
+        ),
+        const SizedBox(
           width: 10,
         ),
         ElevatedButton(
-
           child: const Text("노인"),
           onPressed: () {},
-        ),const SizedBox(
+        ),
+        const SizedBox(
           width: 10,
         ),
         ElevatedButton(
-
           child: const Text("장애"),
           onPressed: () {},
-        ),const SizedBox(
+        ),
+        const SizedBox(
           width: 10,
         ),
         ElevatedButton(
-
           child: const Text("보호자"),
           onPressed: () {},
-        ),const SizedBox(
+        ),
+        const SizedBox(
           width: 10,
         ),
       ],
     );
   }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
 }
+
+void ChangeBtnColor(String btn) {}
