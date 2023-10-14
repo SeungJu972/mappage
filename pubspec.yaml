@@ -68,6 +68,8 @@ flutter:
     - repo/images/alaram.png
     - repo/images/pic.png
     - repo/images/add.png
+    - repo/images/newspaper.png
+    - repo/images/search.png
 #에셋추가시 - 다음 띄우고 입력할것
   # To add assets to your application, add an assets section, like this:
   # assets:

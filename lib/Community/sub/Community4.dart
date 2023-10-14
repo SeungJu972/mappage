@@ -16,7 +16,7 @@ class _Community4State extends State<Community4> {
           leading:IconButton(//상단 좌측
              icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
              onPressed: (){
-              print('Back Button is Cliked');
+               Navigator.pop(context);
              },
              ),
         title:

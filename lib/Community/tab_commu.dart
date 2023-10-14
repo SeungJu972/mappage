@@ -1,17 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mappage/Community/sub/Community.dart';
+import 'package:mappage/Community/sub/Community2.dart';
 import 'package:mappage/Community/sub/Community3.dart';
+import 'package:flutter/material.dart';
+import 'package:mappage/Community/sub/Community4.dart';
+
 
 class Tabcommu extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child : Padding(
       padding: EdgeInsets.all(8.0),
-      child: Column(
-
+      child: ListView(
         children: [
+          Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Community4()));
+                }, icon:  Image.asset(
+              "repo/images/search.png",
+              width: 20,
+              height: 20,
+            ),
+                ),
+                IconButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Community()));
+                }, icon:  Image.asset(
+                  "repo/images/newspaper.png",
+                  width: 20,
+                  height: 20,
+                ),
+                ),
+                IconButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Community2()));
+                }, icon:  Image.asset(
+                  "repo/images/alaram.png",
+                  width: 20,
+                  height: 20,
+                ),
+                ),
+          ],
+          ),
           makeButton(),
           post(),
           post(),

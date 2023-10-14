@@ -17,7 +17,7 @@ class _Community2State extends State<Community2> {
           leading:IconButton(//상단 좌측
              icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
              onPressed: (){
-              print('Back Button is Cliked');
+              Navigator.pop(context);
              },
              ),
         title:
