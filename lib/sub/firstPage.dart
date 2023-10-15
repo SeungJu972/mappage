@@ -20,13 +20,30 @@ class _FirstAppState extends State<FirstApp> {
       zoom: 15 //평균값
       );
 
+  static const double distance = 100;
+  //원의 반지를을 위한 변수
+
+  //google map flutter에서 Circle 클래스 가져오기
+  static Circle circle = Circle(
+    circleId: const CircleId('circle'),
+    //맵에 여러 동그라미가 있을때 식ㅂ려해주는 ID값
+    center: companyLatlng,
+    //중앙 : 내위치로 설정
+    fillColor: Colors.blue.withOpacity(0.5),
+    //원의 색 투명도 부여
+    radius: distance,
+    //반지름, 반경 m기준으로 값을 받게됨
+    strokeWidth: 1,
+  );
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: GoogleMap(
           initialCameraPosition: initialPosition,
           mapType: MapType.normal,
+          circles: {circle},
         ),
       ),
     );
